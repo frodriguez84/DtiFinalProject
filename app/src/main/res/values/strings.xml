@@ -19,6 +19,9 @@
     <string name="attachment_summary_off">No acepto</string>
     <string name="mostrar_dtis">Mostrar DTis</string>
 
+    <string name="recu_pass"> Restablecer contraseña</string>
+    <string name="recu_pass_text">Ingrese su e-mail, se le enviará un correo para modificar su contraseña </string>
+
     <string name="formulario_text"> Complete el formulario cuando visita algun punto DTI,
     ayudenos a mejorar su experiencia</string>
 

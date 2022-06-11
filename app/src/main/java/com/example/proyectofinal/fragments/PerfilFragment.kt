@@ -54,7 +54,6 @@ class PerfilFragment : Fragment() {
         return v
     }
 
-
     override fun onStart() {
         super.onStart()
 

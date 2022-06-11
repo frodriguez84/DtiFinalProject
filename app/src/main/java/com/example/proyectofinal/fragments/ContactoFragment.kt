@@ -31,13 +31,7 @@ class ContactoFragment : Fragment() {
     private  val vm: ContactoViewModel by viewModels()
     private lateinit var goForm : Button
 
-    private lateinit var consulta : TextView
-
-
     private lateinit var v : View
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +42,6 @@ class ContactoFragment : Fragment() {
         btnCiudades = v.findViewById(R.id.btnCiudades)
         btnReddit = v.findViewById(R.id.btnReddit)
         btnMail = v.findViewById(R.id.btnSendMail)
-       // consulta = v.findViewById(R.id.consTextView)
         goForm = v.findViewById(R.id.btnForm)
         return v
     }

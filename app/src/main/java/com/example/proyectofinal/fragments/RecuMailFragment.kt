@@ -28,8 +28,6 @@ class RecuMailFragment : Fragment() {
     private lateinit var btnVolver : Button
     private lateinit var emailRecu : String
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

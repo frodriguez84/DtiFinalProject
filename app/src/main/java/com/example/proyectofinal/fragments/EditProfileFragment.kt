@@ -34,11 +34,12 @@ class EditProfileFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        var c = requireContext()
 
         vm.showData(v)
 
         saveBtn.setOnClickListener {
-            vm.saveData(v)
+            vm.saveData(v,c)
             activity?.onBackPressed()
         }
 

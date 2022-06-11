@@ -1,8 +1,10 @@
 package com.example.proyectofinal.viewmodels
 
+import android.content.Context
 import android.telephony.ims.ImsMmTelManager
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.UserRepository
@@ -25,7 +27,7 @@ class EditProfileViewModel : ViewModel() {
     private lateinit var ciu : String
 
 
-    fun saveData(v: View) {
+    fun saveData(v: View, c: Context) {
 
         nameText = v.findViewById(R.id.nameEdit)
         lastNameText = v.findViewById(R.id.lastEdit)
@@ -43,7 +45,12 @@ class EditProfileViewModel : ViewModel() {
             ) ,
             SetOptions.merge()
         )
+        showMgsSaveData(c)
 
+    }
+
+    fun showMgsSaveData(c: Context){
+        Toast.makeText(c, "Los datos fueron guardados", Toast.LENGTH_SHORT).show()
     }
 
     fun showData(v: View) {

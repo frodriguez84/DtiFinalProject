@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
 
 
-    private lateinit var bOut : Button
+    private lateinit var bOut : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
