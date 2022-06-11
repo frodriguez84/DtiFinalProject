@@ -14,7 +14,9 @@ import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.dtiDocument
+import com.example.proyectofinal.entities.UserRepository.infoOk
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
+import com.example.proyectofinal.entities.UserRepository.notifOk
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,8 +51,11 @@ class HomeViewModel : ViewModel() {
     fun populateFavs() {
         db.collection(USERS).document(userMailLogin).get().addOnSuccessListener {
             listOfFavs = it.get(FAVS) as ArrayList<String>
+            notifOk = it.get("notif") as Boolean
+            infoOk = it.get("info") as Boolean
         }
     }
+
 
     fun showDti(v: View, context: Context) {
         listPopupWindowButton = v.findViewById(R.id.list_popup_button)

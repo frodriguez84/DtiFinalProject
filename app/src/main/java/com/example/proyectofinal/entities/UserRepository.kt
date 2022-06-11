@@ -12,6 +12,8 @@ object UserRepository {
     public var userLongitud =""
     public var ListDtiNombres : MutableList<String> = mutableListOf()
     public var dtiDocument : String = "0"
+    public var notifOk : Boolean =false
+    public var infoOk : Boolean = false
 
 
 

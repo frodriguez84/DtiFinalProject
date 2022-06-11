@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
+import com.example.proyectofinal.entities.UserRepository.infoOk
+import com.example.proyectofinal.entities.UserRepository.notifOk
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.properties.Delegates
@@ -58,17 +60,6 @@ class PerfilViewModel : ViewModel() {
                 tel = document.result.get("telefono").toString()
                 prov = document.result.get("provincia").toString()
                 ciu = document.result.get("ciudad").toString()
-                info = document.result.get("info") as Boolean
-                notif = document.result.get("notif") as Boolean
-
-
-                if(info){
-                    switchInfo.toggle()
-                }
-
-                if(notif){
-                    switchNotif.toggle()
-                }
 
                 if (name != "null"){
                     nameText.text = name
@@ -96,12 +87,23 @@ class PerfilViewModel : ViewModel() {
                     cityText.text = ""
                 }
             }
-
         }
-
     }
 
-    fun cleanLogUser() {
+    fun setSwitch(v: View) {
+        switchNotif = v.findViewById(R.id.switchNotif)
+        switchInfo = v.findViewById(R.id.switchCompInfo)
+
+        if(infoOk){
+            switchInfo.toggle()
+        }
+
+        if(notifOk){
+            switchNotif.toggle()
+        }
+    }
+
+    private fun cleanLogUser() {
         UserRepository.userMailLogin = ""
     }
 

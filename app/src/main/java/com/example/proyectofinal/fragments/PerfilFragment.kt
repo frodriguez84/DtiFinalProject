@@ -2,6 +2,7 @@ package com.example.proyectofinal.fragments
 
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,22 +20,22 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.Config.INFO
 import com.example.proyectofinal.entities.Config.NOTIF
 import com.example.proyectofinal.entities.Config.USERS
+import com.example.proyectofinal.entities.UserRepository.infoOk
+import com.example.proyectofinal.entities.UserRepository.notifOk
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.example.proyectofinal.viewmodels.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
-
 @Suppress("DEPRECATION")
 class PerfilFragment : Fragment() {
 
-
-   private lateinit var v : View
-   private lateinit var editBtn : Button
-   private lateinit var switchOscuro : Switch
-    private lateinit var switchNotif : Switch
-    private lateinit var switchInfo : Switch
+    private lateinit var v: View
+    private lateinit var editBtn: Button
+    private lateinit var switchOscuro: Switch
+    private lateinit var switchNotif: Switch
+    private lateinit var switchInfo: Switch
 
     private val db = FirebaseFirestore.getInstance()
     private val vm: PerfilViewModel by viewModels()
@@ -45,11 +46,12 @@ class PerfilFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_perfil, container, false)
 
-                editBtn = v.findViewById(R.id.editBtn)
-                switchOscuro = v.findViewById(R.id.switchDark)
-                switchNotif = v.findViewById(R.id.switchNotif)
-                switchInfo = v.findViewById(R.id.switchCompInfo)
+        editBtn = v.findViewById(R.id.editBtn)
+        switchOscuro = v.findViewById(R.id.switchDark)
+        switchNotif = v.findViewById(R.id.switchNotif)
+        switchInfo = v.findViewById(R.id.switchCompInfo)
 
+        vm.setSwitch(v)
         return v
     }
 
@@ -80,37 +82,48 @@ class PerfilFragment : Fragment() {
 
         switchNotif.setOnCheckedChangeListener { compoundButton, isChecked ->
 
-            if(isChecked){
+            if (isChecked) {
+                notifOk = true
                 db.collection(USERS).document(userMailLogin).set(
                     hashMapOf(
-                    NOTIF to true,
-                ) ,
-                    SetOptions.merge())
+                        NOTIF to true,
+                    ),
+                    SetOptions.merge()
+                )
             } else {
-                db.collection(USERS).document(userMailLogin).set( hashMapOf(
-                    NOTIF to false,
-                ) ,
-                    SetOptions.merge())
+                notifOk = false
+                db.collection(USERS).document(userMailLogin).set(
+                    hashMapOf(
+                        NOTIF to false,
+                    ),
+                    SetOptions.merge()
+                )
             }
         }
 
         switchInfo.setOnCheckedChangeListener { compoundButton, isChecked ->
 
-            if(isChecked){
-                db.collection(USERS).document(userMailLogin).set( hashMapOf(
-                    INFO to true,
-                ) ,
-                    SetOptions.merge())
+            if (isChecked) {
+                infoOk = true
+                db.collection(USERS).document(userMailLogin).set(
+                    hashMapOf(
+                        INFO to true,
+                    ),
+                    SetOptions.merge()
+                )
             } else {
-                db.collection(USERS).document(userMailLogin).set(hashMapOf(
-                    INFO to false,
-                ) ,
-                    SetOptions.merge())
+                infoOk = false
+                db.collection(USERS).document(userMailLogin).set(
+                    hashMapOf(
+                        INFO to false,
+                    ),
+                    SetOptions.merge()
+                )
             }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            vm.dialog(requireContext() , requireActivity())
+            vm.dialog(requireContext(), requireActivity())
         }
     }
 
