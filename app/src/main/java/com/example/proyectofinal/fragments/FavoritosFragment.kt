@@ -24,25 +24,18 @@ import kotlinx.coroutines.withContext
 @Suppress("DEPRECATION")
 class FavoritosFragment : Fragment() {
 
-   private lateinit var v : View
+    private lateinit var v: View
 
-   private val vm: FavoritosViewModel by viewModels()
+    private val vm: FavoritosViewModel by viewModels()
     lateinit var adapter: FavAdapter
-    private lateinit var pos : String
-
-
+    private lateinit var pos: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_favoritos, container, false)
-
-
-
         vm.recyclerFavs = v.findViewById(R.id.recFav)
-
-
 
         return v
     }
@@ -53,25 +46,21 @@ class FavoritosFragment : Fragment() {
         vm.recyclerFavs.setHasFixedSize(true)
         vm.recyclerFavs.layoutManager = LinearLayoutManager(context)
 
-        adapter = FavAdapter(listOfFavs)  {position ->
+        adapter = FavAdapter(listOfFavs) { position ->
 
             pos = listOfFavs[position]
 
-            var action = FavoritosFragmentDirections.actionFavoritosFragmentToBeachFragment(pos)
+            val action = FavoritosFragmentDirections.actionFavoritosFragmentToBeachFragment(pos)
             v.findNavController().navigate(action)
 
         }
         vm.recyclerFavs.adapter = adapter
 
-
-
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            vm.dialog(requireContext() , requireActivity())
+            vm.dialog(requireContext(), requireActivity())
         }
 
     }
-
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

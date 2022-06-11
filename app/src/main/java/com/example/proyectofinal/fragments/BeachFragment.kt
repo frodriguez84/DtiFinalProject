@@ -1,6 +1,5 @@
 package com.example.proyectofinal.fragments
 
-
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -21,20 +20,15 @@ import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.viewmodels.BeachViewModel
 
-
-
 class BeachFragment : Fragment() {
 
-    private lateinit var v : View
+    private lateinit var v: View
 
     private val vm: BeachViewModel by viewModels()
-    private lateinit var idPlaya : String
-    private lateinit var bAddToFav : Button
-    private lateinit var bRemoveFav : Button
-    private lateinit var btnMap : ImageView
-
-
-
+    private lateinit var idPlaya: String
+    private lateinit var bAddToFav: Button
+    private lateinit var bRemoveFav: Button
+    private lateinit var btnMap: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,49 +40,41 @@ class BeachFragment : Fragment() {
         bRemoveFav = v.findViewById(R.id.btnRemoveFavoritos)
         btnMap = v.findViewById(R.id.btnMap)
 
-
-
         return v
     }
 
     override fun onStart() {
         super.onStart()
 
-     idPlaya = BeachFragmentArgs.fromBundle(requireArguments()).dti
+        idPlaya = BeachFragmentArgs.fromBundle(requireArguments()).dti
 
-      vm.showDataBeach(idPlaya , v)
-
+        vm.showDataBeach(idPlaya, v)
         vm.showButtons(v, idPlaya)
 
         bAddToFav.setOnClickListener {
 
-            if(!vm.esFavorito(idPlaya)){
+            if (!vm.esFavorito(idPlaya)) {
                 //AGREGAR DTI A FAV
                 vm.addFavotite(idPlaya)
                 vm.favAdded(v, requireContext())
-            }else{
+            } else {
                 vm.favInList(v, requireContext())
             }
         }
 
         bRemoveFav.setOnClickListener {
 
-            if(vm.esFavorito(idPlaya)){
+            if (vm.esFavorito(idPlaya)) {
                 vm.removeFavorite(idPlaya)
                 vm.favRemoved(v, requireContext())
                 activity?.onBackPressed()
-            }else{
+            } else {
                 vm.dtiNotInList(v, requireContext())
             }
         }
 
-
         btnMap.setOnClickListener {
-            vm.goMap(idPlaya , requireContext())
+            vm.goMap(idPlaya, requireContext())
         }
-
     }
-
-
-
 }

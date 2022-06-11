@@ -4,11 +4,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class Favoritos (
+class Favoritos(
 
-    //var name : String,
-    var id : Int
+    var id: Int
 
-        ) : Parcelable{
+) : Parcelable {
 
-        }
+}

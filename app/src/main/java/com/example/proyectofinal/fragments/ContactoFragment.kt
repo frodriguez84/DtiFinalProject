@@ -25,13 +25,13 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ContactoFragment : Fragment() {
 
-    private lateinit var btnCiudades : Button
-    private lateinit var btnReddit : Button
-    private lateinit var btnMail : Button
-    private  val vm: ContactoViewModel by viewModels()
-    private lateinit var goForm : Button
+    private lateinit var btnCiudades: Button
+    private lateinit var btnReddit: Button
+    private lateinit var btnMail: Button
+    private val vm: ContactoViewModel by viewModels()
+    private lateinit var goForm: Button
 
-    private lateinit var v : View
+    private lateinit var v: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +49,7 @@ class ContactoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        if(ListDti.isEmpty()){
+        if (ListDti.isEmpty()) {
 
             val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_bar)
             navBar.visibility = View.GONE
@@ -57,18 +57,15 @@ class ContactoFragment : Fragment() {
         }
 
         btnCiudades.setOnClickListener {
-
             vm.goCiudadesWeb(requireContext())
         }
 
         btnReddit.setOnClickListener {
             vm.goRedditWeb(requireContext())
-
         }
 
         btnMail.setOnClickListener {
-
-            vm.sendMail(requireContext() , v)
+            vm.sendMail(requireContext(), v)
         }
 
         goForm.setOnClickListener {
@@ -76,12 +73,9 @@ class ContactoFragment : Fragment() {
             v.findNavController().navigate(action)
         }
 
-       requireActivity().onBackPressedDispatcher.addCallback(this) {
-            vm.dialog(requireContext() , requireActivity())
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            vm.dialog(requireContext(), requireActivity())
         }
-
-
-
     }
 
 }

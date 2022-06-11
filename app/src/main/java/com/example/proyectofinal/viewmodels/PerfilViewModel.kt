@@ -9,6 +9,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,7 +48,7 @@ class PerfilViewModel : ViewModel() {
         switchNotif = v.findViewById(R.id.switchNotif)
         switchInfo = v.findViewById(R.id.switchCompInfo)
 
-        val docRef = db.collection("users").document(UserRepository.userMailLogin)
+        val docRef = db.collection(USERS).document(UserRepository.userMailLogin)
 
         docRef.get().addOnCompleteListener{ document ->
             if (document != null) {

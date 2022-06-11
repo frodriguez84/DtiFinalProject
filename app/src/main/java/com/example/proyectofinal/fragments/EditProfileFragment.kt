@@ -22,7 +22,7 @@ class EditProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_edit_profile, container, false)
 
         saveBtn = v.findViewById(R.id.editBtn)
@@ -30,11 +30,9 @@ class EditProfileFragment : Fragment() {
         return v
     }
 
-
-
     override fun onStart() {
         super.onStart()
-        var c = requireContext()
+        val c = requireContext()
 
         vm.showData(v)
 

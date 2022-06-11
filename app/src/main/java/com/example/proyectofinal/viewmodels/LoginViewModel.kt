@@ -8,6 +8,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.ERROR
+import com.example.proyectofinal.entities.Config.SUCCESS
+import com.example.proyectofinal.entities.Config.USERS
+import com.example.proyectofinal.entities.Config.USER_PASS_WRONG
 import com.example.proyectofinal.entities.Favoritos
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.example.proyectofinal.fragments.LoginFragmentDirections
@@ -66,29 +70,29 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun cleanUser(){
+    private fun cleanUser(){
         email.text =""
         pass.text =""
     }
 
-    fun registerOK(c: Context) {
+    private fun registerOK(c: Context) {
 
-        db.collection("users").document(userMailLogin).set(
+        db.collection(USERS).document(userMailLogin).set(
             hashMapOf(
                 "favs" to mutableListOf<Favoritos>(),
                 "notif" to false,
                 "info" to false
             ))
         cleanUser()
-        Toast.makeText(c, "Registro exitoso, inicie sesion", Toast.LENGTH_SHORT).show()
+        Toast.makeText(c, SUCCESS, Toast.LENGTH_SHORT).show()
 
     }
-    fun registerFail(c: Context){
-        Toast.makeText(c, "Error: Se ha producido un error registrando al usuario", Toast.LENGTH_SHORT).show()
+    private fun registerFail(c: Context){
+        Toast.makeText(c, ERROR, Toast.LENGTH_SHORT).show()
     }
 
-    fun loginFail(c: Context){
-        Toast.makeText(c, "USUARIO or PASSWORD incorrecto", Toast.LENGTH_SHORT).show()
+    private fun loginFail(c: Context){
+        Toast.makeText(c, USER_PASS_WRONG, Toast.LENGTH_SHORT).show()
 
     }
 }

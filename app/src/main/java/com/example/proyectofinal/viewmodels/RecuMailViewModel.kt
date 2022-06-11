@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.proyectofinal.entities.Config.MAIL_FAIL
+import com.example.proyectofinal.entities.Config.MAIL_SENT
 import com.google.firebase.auth.FirebaseAuth
 
 class RecuMailViewModel : ViewModel() {
@@ -18,10 +20,10 @@ class RecuMailViewModel : ViewModel() {
         mAuth.sendPasswordResetEmail(emailRecu).addOnCompleteListener {
 
             if(it.isSuccessful){
-                Toast.makeText( v.context , "Se ha enviado un correo para restablecer tu contraseña" ,
+                Toast.makeText( v.context , MAIL_SENT ,
                 Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText( v.context , "No se puedo enviar un correo para restablecer tu contraseña" ,
+                Toast.makeText( v.context , MAIL_FAIL ,
                     Toast.LENGTH_SHORT).show()
             }
 

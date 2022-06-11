@@ -16,6 +16,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.INFO
+import com.example.proyectofinal.entities.Config.NOTIF
+import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.example.proyectofinal.viewmodels.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -28,16 +31,12 @@ class PerfilFragment : Fragment() {
 
 
    private lateinit var v : View
-
-
    private lateinit var editBtn : Button
    private lateinit var switchOscuro : Switch
     private lateinit var switchNotif : Switch
     private lateinit var switchInfo : Switch
 
     private val db = FirebaseFirestore.getInstance()
-
-
     private val vm: PerfilViewModel by viewModels()
 
     override fun onCreateView(
@@ -82,14 +81,14 @@ class PerfilFragment : Fragment() {
         switchNotif.setOnCheckedChangeListener { compoundButton, isChecked ->
 
             if(isChecked){
-                db.collection("users").document(userMailLogin).set(
+                db.collection(USERS).document(userMailLogin).set(
                     hashMapOf(
-                    "notif" to true,
+                    NOTIF to true,
                 ) ,
                     SetOptions.merge())
             } else {
-                db.collection("users").document(userMailLogin).set( hashMapOf(
-                    "notif" to false,
+                db.collection(USERS).document(userMailLogin).set( hashMapOf(
+                    NOTIF to false,
                 ) ,
                     SetOptions.merge())
             }
@@ -98,13 +97,13 @@ class PerfilFragment : Fragment() {
         switchInfo.setOnCheckedChangeListener { compoundButton, isChecked ->
 
             if(isChecked){
-                db.collection("users").document(userMailLogin).set( hashMapOf(
-                    "info" to true,
+                db.collection(USERS).document(userMailLogin).set( hashMapOf(
+                    INFO to true,
                 ) ,
                     SetOptions.merge())
             } else {
-                db.collection("users").document(userMailLogin).set(hashMapOf(
-                    "info" to false,
+                db.collection(USERS).document(userMailLogin).set(hashMapOf(
+                    INFO to false,
                 ) ,
                     SetOptions.merge())
             }
@@ -113,10 +112,6 @@ class PerfilFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             vm.dialog(requireContext() , requireActivity())
         }
-
-
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

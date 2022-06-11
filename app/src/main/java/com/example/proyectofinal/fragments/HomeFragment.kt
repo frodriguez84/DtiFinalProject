@@ -13,6 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.APIService
+import com.example.proyectofinal.entities.Config.GEO_OFF
+import com.example.proyectofinal.entities.Config.TIME_OUT
 import com.example.proyectofinal.entities.Dti
 import com.example.proyectofinal.entities.RestEngine
 import com.example.proyectofinal.entities.UserRepository
@@ -32,15 +34,9 @@ import retrofit2.Response
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
-
     private lateinit var v : View
     private val vm : HomeViewModel by viewModels()
-    private lateinit var listPopupWindowButton : Button
     private lateinit var goBeachButton: Button
-    private lateinit var listPopupWindow: ListPopupWindow
-
-
-
     private lateinit var bOut : ImageView
 
 
@@ -68,12 +64,12 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         if(ListDti.isNotEmpty()) {
-            if (!userLatitud.isBlank() && !userLongitud.isBlank()) {
+            if (userLatitud.isNotBlank() && userLongitud.isNotBlank()) {
                 //Nos va a mostrar el DTI que se encuentra mas cerca a nuestra posicion por Geolocalizacion
                 vm.dtiCercano(v)
             } else {
                 vm.showData(dtiDocument.toInt(), v)
-                Toast.makeText(context, "No tiene activado Geolocalizacion", Toast.LENGTH_SHORT)
+                Toast.makeText(context, GEO_OFF, Toast.LENGTH_SHORT)
                     .show()
             }
 
@@ -82,7 +78,7 @@ class HomeFragment : Fragment() {
         } else {
 
             AlertDialog.Builder(requireContext())
-                .setMessage("No se ha podido acceder al servidor , Intentelo mas tarde")
+                .setMessage(TIME_OUT)
                 .setCancelable(false)
                 .setPositiveButton("Aceptar") { dialog, whichButton ->
                     FirebaseAuth.getInstance().signOut()
@@ -104,7 +100,6 @@ class HomeFragment : Fragment() {
         }
 
         bOut.setOnClickListener {
-
             vm.dialog(requireContext(),requireActivity())
         }
 

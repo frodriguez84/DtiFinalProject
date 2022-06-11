@@ -32,12 +32,10 @@ class FormularioFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_formulario, container, false)
 
         bSave = v.findViewById(R.id.btnGuardar)
-
-
         return v
     }
 
@@ -61,11 +59,7 @@ class FormularioFragment : Fragment() {
             } else {
                 vm.messageSaveFormFailed(requireContext())
             }
-
-
         }
     }
-
-
 }
 

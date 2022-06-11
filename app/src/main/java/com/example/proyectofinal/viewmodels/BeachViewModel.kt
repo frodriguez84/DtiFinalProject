@@ -15,6 +15,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.DTI_ADD
+import com.example.proyectofinal.entities.Config.DTI_ELIMINATED
+import com.example.proyectofinal.entities.Config.DTI_NOT_IN_FAV
+import com.example.proyectofinal.entities.Config.DTI_REPEATER
+import com.example.proyectofinal.entities.Config.FAVS
+import com.example.proyectofinal.entities.Config.GOOGLE_MAPS
+import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
@@ -90,17 +97,17 @@ class BeachViewModel : ViewModel() {
         dirV = v.findViewById(R.id.windDirTV)
 
 
-           // pcAforo.max = posDti.maxAforo.toFloat()
+
             pcPark.max = posDti.maxParking
             aforo = posDti.aforo
-            temp =  posDti.temperatura.toFloat()
+            temp =  posDti.temperatura
             park = posDti.parking
             uvs = posDti.uv.toFloat()
 
             nameView.text = posDti.name
-           //aforoView.text = posDti.aforo+ " Personas"
+
             tempView.text = posDti.temperatura.toString()+"°"
-            //parkView.text = posDti.parking.toString()+" Ocupados"
+
             bandera = posDti.bandera
             rayosUv = posDti.uv
 
@@ -173,31 +180,9 @@ class BeachViewModel : ViewModel() {
                 }
             }
 
-      /*  when(park){
-            "bajo"-> {
-                parkView.text = "Bajo"
-                pcPark.progress = 25F
-            }
-            "medio"-> {
-                parkView.text = "Medio"
-                pcPark.progress = 50F
-            }
-            "alto"-> {
-                parkView.text = "Alto"
-                pcPark.progress = 75F
-            }
-            "lleno"-> {
-                parkView.text = "Lleno"
-                pcPark.progress = 100F
-            }
-        }*/
-
-           // pcAforo.progress = aforo
             pcTemp.progress = temp
             pcPark.progress = park
             pcUvs.progress = uvs
-
-
 
     }
 
@@ -219,51 +204,34 @@ class BeachViewModel : ViewModel() {
 
     fun dtiNotInList(v: View, context : Context) {
 
-        val text = "Dti no se encuentra en lista de favoritos"
-        val duration = Toast.LENGTH_SHORT
-
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
+        Toast.makeText(context,DTI_NOT_IN_FAV , Toast.LENGTH_LONG).show()
     }
 
     fun favRemoved(v : View, context : Context) {
-        //Snackbar.make(v, "Dti ha sido eliminado de su lista de favoritos", Snackbar.LENGTH_SHORT).show()
-        val text = "Dti ha sido eliminado de su lista de favoritos"
-        val duration = Toast.LENGTH_SHORT
-
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
+        Toast.makeText(context, DTI_ELIMINATED , Toast.LENGTH_LONG).show()
     }
 
     fun removeFavorite(x: String) {
-        var favoritos = db.collection("users").document(userMailLogin)
-        favoritos.update("favs", FieldValue.arrayRemove(x))
+        var favoritos = db.collection(USERS).document(userMailLogin)
+        favoritos.update(FAVS, FieldValue.arrayRemove(x))
         listOfFavs.remove(listOfFavs.find { f -> f == x })
     }
 
     fun addFavotite(x: String) {
-        var favoritos = db.collection("users").document(userMailLogin)
-        favoritos.update("favs", FieldValue.arrayUnion(x))
+        var favoritos = db.collection(USERS).document(userMailLogin)
+        favoritos.update(FAVS, FieldValue.arrayUnion(x))
         listOfFavs.add(x)
 
     }
 
     fun favAdded(v : View, context : Context) {
 
-        val text = "Dti agregado correctamente a su lista de favoritos"
-        val duration = Toast.LENGTH_SHORT
-
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
+        Toast.makeText(context, DTI_ADD , Toast.LENGTH_LONG).show()
     }
 
     fun favInList(v : View, context : Context) {
 
-        val text = "El Dti ya se encuentra en su lista de favoritos"
-        val duration = Toast.LENGTH_SHORT
-
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
+        Toast.makeText(context, DTI_REPEATER , Toast.LENGTH_LONG).show()
     }
 
     fun goMap(idPlaya: String , context : Context) {
@@ -275,7 +243,7 @@ class BeachViewModel : ViewModel() {
         val gmmIntentUri = Uri.parse("geo:"+ latitud+"," +longitud+"?q=playa "+playa.name)
 
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        mapIntent.setPackage("com.google.android.apps.maps")
+        mapIntent.setPackage(GOOGLE_MAPS)
 
         startActivity(context , mapIntent , null)
 

@@ -9,6 +9,8 @@ import android.widget.*
 import androidx.core.graphics.toColor
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.FAVS
+import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.dtiDocument
@@ -24,33 +26,29 @@ class HomeViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
 
-
-    private lateinit var beachName : TextView
-    private lateinit var pcAforo : CircularSeekBar
+    private lateinit var beachName: TextView
+    private lateinit var pcAforo: CircularSeekBar
     private lateinit var aforoView: TextView
 
-    private lateinit var pcTemp : CircularSeekBar
+    private lateinit var pcTemp: CircularSeekBar
     private lateinit var tempView: TextView
 
-    private lateinit var pcPark : CircularSeekBar
+    private lateinit var pcPark: CircularSeekBar
     private lateinit var parkView: TextView
 
     private lateinit var listPopupWindowButton: Button
     private lateinit var listPopupWindow: ListPopupWindow
 
-    private lateinit var aforo : String
-    private var temp : Float = 0F
-    private  var park : Float = 0F
+    private lateinit var aforo: String
+    private var temp: Float = 0F
+    private var park: Float = 0F
 
-    private var lugDispo : Int = 0
-
-
-
+    private var lugDispo: Int = 0
 
 
     fun populateFavs() {
-        db.collection("users").document(userMailLogin).get().addOnSuccessListener {
-           listOfFavs = it.get("favs") as ArrayList<String>
+        db.collection(USERS).document(userMailLogin).get().addOnSuccessListener {
+            listOfFavs = it.get(FAVS) as ArrayList<String>
         }
     }
 
@@ -64,7 +62,6 @@ class HomeViewModel : ViewModel() {
         val adapter =
             ArrayAdapter(context, R.layout.list_popup_window_item, UserRepository.ListDtiNombres)
         listPopupWindow.setAdapter(adapter)
-
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
 
             showData(position, v)
@@ -75,12 +72,10 @@ class HomeViewModel : ViewModel() {
         }
 
         listPopupWindowButton.setOnClickListener {
-
             listPopupWindow.show()
 
         }
     }
-
 
     fun showData(pos: Int, v: View) {
 
@@ -94,39 +89,39 @@ class HomeViewModel : ViewModel() {
         parkView = v.findViewById(R.id.parkTextView)
         pcPark = v.findViewById(R.id.pcpark)
 
-        var dti =  ListDti[pos]
+        var dti = ListDti[pos]
 
 
-            beachName.text = dti.name
-          aforo = dti.aforo
-         temp =  dti.temperatura
+        beachName.text = dti.name
+        aforo = dti.aforo
+        temp = dti.temperatura
 
-          pcPark.max = dti.maxParking
-         pcPark.progress = dti.parking
+        pcPark.max = dti.maxParking
+        pcPark.progress = dti.parking
 
 
-          tempView.text = dti.temperatura.toString()+"°"
-         pcTemp.progress = temp
+        tempView.text = dti.temperatura.toString() + "°"
+        pcTemp.progress = temp
         park = dti.parking
 
         lugDispo = (dti.maxParking - dti.parking).toInt()
 
-        parkView.text = lugDispo.toString()+" Disponibles"
+        parkView.text = lugDispo.toString() + " Disponibles"
 
-        when(aforo){
-            "bajo"-> {
+        when (aforo) {
+            "bajo" -> {
                 aforoView.text = "Bajo"
                 pcAforo.progress = 25F
             }
-            "medio"-> {
+            "medio" -> {
                 aforoView.text = "Medio"
                 pcAforo.progress = 50F
             }
-            "altos"-> {
+            "altos" -> {
                 aforoView.text = "Alto"
                 pcAforo.progress = 75F
             }
-            "lleno"-> {
+            "lleno" -> {
                 aforoView.text = "Lleno"
                 pcAforo.progress = 100F
             }
@@ -138,13 +133,13 @@ class HomeViewModel : ViewModel() {
         userMailLogin = ""
     }
 
-        fun dtiCercano(v : View){
+    fun dtiCercano(v: View) {
 
         var dtiCerca = 0
         var distEntreDTIyUser = 9999999999999999F
         var position = 0
 
-        for (dti in ListDti){
+        for (dti in ListDti) {
 
             val locationA = Location("punto A")
 
@@ -158,17 +153,17 @@ class HomeViewModel : ViewModel() {
 
             val distance = locationA.distanceTo(locationB)
 
-            if (distance < distEntreDTIyUser ){
+            if (distance < distEntreDTIyUser) {
                 dtiCerca = position
                 distEntreDTIyUser = distance
             }
             position++
         }
         dtiDocument = dtiCerca.toString()
-        showData(dtiCerca , v )
+        showData(dtiCerca, v)
     }
 
-    fun dialog(context: Context, activity : Activity) {
+    fun dialog(context: Context, activity: Activity) {
         AlertDialog.Builder(context)
             .setMessage("Cerrar Aplicacion?")
             .setCancelable(false)

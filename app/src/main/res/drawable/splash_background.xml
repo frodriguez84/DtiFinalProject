@@ -8,8 +8,8 @@
 
         android:left="10dp"
         android:right="10dp"
-        android:top="180dp"
-        android:bottom="180dp"
+        android:top="220dp"
+        android:bottom="220dp"
         >
 
         <bitmap android:src="@drawable/logo1"/>

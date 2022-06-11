@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.USERS
 import com.example.proyectofinal.entities.UserRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -27,6 +28,10 @@ class EditProfileViewModel : ViewModel() {
     private lateinit var ciu : String
 
 
+    private var NULL : String = "null"
+    private var DATA_SAVED : String = "Los datos fueron guardados"
+
+
     fun saveData(v: View, c: Context) {
 
         nameText = v.findViewById(R.id.nameEdit)
@@ -35,7 +40,7 @@ class EditProfileViewModel : ViewModel() {
         provText = v.findViewById(R.id.provEdit)
         cityText = v.findViewById(R.id.cityEdit)
 
-        db.collection("users").document(UserRepository.userMailLogin).set(
+        db.collection(USERS).document(UserRepository.userMailLogin).set(
             hashMapOf(
                 "apellido" to lastNameText.text.toString(),
                 "nombre" to nameText.text.toString(),
@@ -50,7 +55,7 @@ class EditProfileViewModel : ViewModel() {
     }
 
     fun showMgsSaveData(c: Context){
-        Toast.makeText(c, "Los datos fueron guardados", Toast.LENGTH_SHORT).show()
+        Toast.makeText(c, DATA_SAVED, Toast.LENGTH_SHORT).show()
     }
 
     fun showData(v: View) {
@@ -61,7 +66,7 @@ class EditProfileViewModel : ViewModel() {
         provText = v.findViewById(R.id.provEdit)
         cityText = v.findViewById(R.id.cityEdit)
 
-        val docRef = db.collection("users").document(UserRepository.userMailLogin)
+        val docRef = db.collection(USERS).document(UserRepository.userMailLogin)
 
         docRef.get().addOnCompleteListener{ document ->
             if (document != null) {
@@ -72,27 +77,27 @@ class EditProfileViewModel : ViewModel() {
                 prov = document.result.get("provincia").toString()
                 ciu = document.result.get("ciudad").toString()
 
-                if (name != "null"){
+                if (name != NULL){
                     nameText.text = name
                 } else {
                     nameText.text = ""
                 }
-                if(last != "null") {
+                if(last != NULL) {
                     lastNameText.text = last
                 } else {
                     lastNameText.text = ""
                 }
-                if(tel != "null") {
+                if(tel != NULL) {
                     telText.text = tel
                 } else {
                     telText.text = ""
                 }
-                if(prov != "null") {
+                if(prov != NULL) {
                     provText.text = prov
                 } else {
                     provText.text = ""
                 }
-                if(ciu != "null") {
+                if(ciu != NULL) {
                     cityText.text = ciu
                 } else {
                     cityText.text = ""
