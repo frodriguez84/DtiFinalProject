@@ -31,8 +31,6 @@ class PerfilViewModel : ViewModel() {
     private lateinit var tel : String
     private lateinit var prov : String
     private lateinit var ciu : String
-    private var info by Delegates.notNull<Boolean>()
-    private var notif by Delegates.notNull<Boolean>()
 
 
     private lateinit var switchNotif : Switch
