@@ -5,6 +5,9 @@ import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Config.FORMS
+import com.example.proyectofinal.entities.Config.FORM_FIELDS_INCOMPLETE
+import com.example.proyectofinal.entities.Config.FORM_SENT
 import com.example.proyectofinal.entities.FormRepository
 import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
@@ -34,15 +37,12 @@ class FormularioViewModel : ViewModel() {
 
     private lateinit var dtiSelect: TextView
 
-
     private var condicionE = ""
     private var transporteE = ""
     private var familiaE = ""
     private var provinciaE = ""
     private var diasE = ""
     private var dtiSelected = ""
-
-
 
     fun showDti(v: View, context: Context){
         dtiSelect = v.findViewById(R.id.dtiForm)
@@ -214,7 +214,7 @@ class FormularioViewModel : ViewModel() {
     fun saveForm() : Boolean{
         val ok = false
 
-        db.collection("forms").document().set(
+        db.collection(FORMS).document().set(
             hashMapOf(
                 "dti" to dtiSelected,
                 "condicion" to condicionE,
@@ -242,12 +242,12 @@ class FormularioViewModel : ViewModel() {
     }
 
     fun messageSaveFormOk(context: Context){
-        Toast.makeText(context, "Formulario enviado - Gracias", Toast.LENGTH_SHORT)
+        Toast.makeText(context, FORM_SENT, Toast.LENGTH_SHORT)
             .show()
     }
 
     fun messageSaveFormFailed(context: Context){
-        Toast.makeText(context, "Complete todos los campos del formulario, Gracias", Toast.LENGTH_SHORT)
+        Toast.makeText(context, FORM_FIELDS_INCOMPLETE, Toast.LENGTH_SHORT)
             .show()
     }
 }

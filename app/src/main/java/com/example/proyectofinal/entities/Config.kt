@@ -9,6 +9,8 @@ object Config {
     var GOOGLE_MAPS : String = "com.google.android.apps.maps"
     var USERS : String = "users"
     var FAVS : String = "favs"
+    var FORMS : String = "forms"
+
 
 
     ///MENSAJES///
@@ -26,6 +28,10 @@ object Config {
     //RecuMail ViewModel
     var MAIL_SENT : String = "Se ha enviado un correo para restablecer tu contraseña"
     var MAIL_FAIL : String = "No se puedo enviar un correo para restablecer tu contraseña"
+
+    //Formulario ViewModel
+    var FORM_SENT : String = "Formulario enviado - Gracias"
+    var FORM_FIELDS_INCOMPLETE : String = "Complete todos los campos del formulario, Gracias"
 
     //RecuMail Fragment
     var MAIL_REQUIRED : String = "Debe ingresar el mail"
