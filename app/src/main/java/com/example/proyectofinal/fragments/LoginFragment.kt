@@ -25,8 +25,6 @@ class LoginFragment : Fragment() {
     private lateinit var btnLog: Button
     private lateinit var btnReg: Button
     private lateinit var btnRecu: Button
-
-
     private lateinit var v: View
 
     override fun onCreateView(
@@ -47,7 +45,7 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var c = requireContext()
+        val c = requireContext()
 
         btnReg.setOnClickListener {
             vm.register(v, c)

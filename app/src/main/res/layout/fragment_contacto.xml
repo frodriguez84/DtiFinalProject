@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ContactoFragment" >
 
+    <View
+        android:id="@+id/view2"
+        style="@style/Divider"
+        android:layout_width="410dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
     <Button
         android:id="@+id/btnCiudades"
         android:layout_width="188dp"
@@ -51,29 +62,42 @@
         app:layout_constraintStart_toEndOf="@+id/imageView12"
         app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
+
     <Button
         android:id="@+id/btnSendMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Envianos un tu consulta"
+        android:layout_marginTop="48dp"
+        android:text="Envianos tu consulta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/consTextView" />
 
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnForm" />
+
     <EditText
         android:id="@+id/consTextView"
         android:layout_width="328dp"
         android:layout_height="104dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="Tu consulta"
-        android:inputType="text"
+        android:inputType="textMultiLine|text"
+        android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnForm" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
         android:id="@+id/btnForm"

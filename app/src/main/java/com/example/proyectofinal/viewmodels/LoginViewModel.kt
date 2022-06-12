@@ -1,6 +1,5 @@
 package com.example.proyectofinal.viewmodels
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.TextView
@@ -15,7 +14,6 @@ import com.example.proyectofinal.entities.Config.USER_PASS_WRONG
 import com.example.proyectofinal.entities.Favoritos
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.example.proyectofinal.fragments.LoginFragmentDirections
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
             AlertDialog.Builder(requireContext())
                 .setMessage(TIME_OUT)
                 .setCancelable(false)
-                .setPositiveButton("Aceptar") { dialog, whichButton ->
+                .setPositiveButton("Cerrar App") { dialog, whichButton ->
                     FirebaseAuth.getInstance().signOut()
                     vm.cleanLogUser()
                     activity?.finish()

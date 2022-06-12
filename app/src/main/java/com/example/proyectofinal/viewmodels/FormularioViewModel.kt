@@ -44,6 +44,7 @@ class FormularioViewModel : ViewModel() {
     private var diasE = ""
     private var dtiSelected = ""
 
+
     fun showDti(v: View, context: Context){
         dtiSelect = v.findViewById(R.id.dtiForm)
         listPopupWindowButton = v.findViewById(R.id.dti_popup_button)
