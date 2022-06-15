@@ -59,6 +59,7 @@ class LoginViewModel : ViewModel() {
                 if (it.isSuccessful) {
                     userMailLogin = email.text.toString()
                     registerOK(c)
+                    cleanUser()
                 } else {
                     registerFail(c)
                 }

@@ -5,14 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 interface APIService {
-
-    @GET("dtis")
-    fun getDtiList(): Call<List<Dti>>
-
-    @GET("users")
+    @GET("getDtis")
     fun getBackEnd(): Call<List<Dti>>
-
-    @GET
-    fun getDtiByid(@Url url: String): Call<Dti>
-
 }

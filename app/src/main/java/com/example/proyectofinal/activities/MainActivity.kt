@@ -68,13 +68,8 @@ class MainActivity : AppCompatActivity() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         getLastLocation()
-
         callServiceGetBack()
-
-
-
     }
-
 
     private fun showBottomBar(){
         val navBar: BottomNavigationView = findViewById(R.id.bottom_bar)
@@ -113,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
-        var mLocationRequest = LocationRequest()
+        val mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         mLocationRequest.interval = 0
         mLocationRequest.fastestInterval = 0
@@ -127,14 +122,14 @@ class MainActivity : AppCompatActivity() {
 
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            var mLastLocation: Location = locationResult.lastLocation
+            val mLastLocation: Location = locationResult.lastLocation
             Log.d ("Test",mLastLocation.latitude.toString())
             Log.d ("Test",mLastLocation.longitude.toString())
         }
     }
 
     private fun isLocationEnabled(): Boolean {
-        var locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
@@ -190,10 +185,7 @@ class MainActivity : AppCompatActivity() {
                 if(!r.isNullOrEmpty()){
                     getDtiNames(ListDti)
                 }
-
-
             }
-
             override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
             }
@@ -209,9 +201,6 @@ class MainActivity : AppCompatActivity() {
             }
         return ListDtiNombres
     }
-
-
-
 }
 
 
