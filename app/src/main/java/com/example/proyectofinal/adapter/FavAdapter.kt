@@ -37,8 +37,6 @@ class FavAdapter(
         fun getCard () : CardView {
             return view.findViewById(R.id.card)
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavHolder {
@@ -48,9 +46,8 @@ class FavAdapter(
 
     override fun onBindViewHolder(holder: FavHolder, position: Int) {
 
-        var fav = listOfFavs[position]
-
-        var dti = ListDti[fav.toInt()]
+        val fav = listOfFavs[position]
+        val dti = ListDti[fav.toInt()]
         holder.setName(dti.name)
 
         holder.getCard().setOnClickListener{

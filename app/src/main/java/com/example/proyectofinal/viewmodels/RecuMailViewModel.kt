@@ -26,8 +26,6 @@ class RecuMailViewModel : ViewModel() {
                 Toast.makeText( v.context , MAIL_FAIL ,
                     Toast.LENGTH_SHORT).show()
             }
-
         }
     }
-
 }

@@ -62,11 +62,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.formularioFragment -> hideBottomBar()
                 else -> showBottomBar()
             }
-
         }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
         getLastLocation()
         callServiceGetBack()
     }

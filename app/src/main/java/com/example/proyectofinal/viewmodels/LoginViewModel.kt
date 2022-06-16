@@ -37,6 +37,7 @@ class LoginViewModel : ViewModel() {
 
                     val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                     v.findNavController().navigate(action)
+
                     cleanUser()
                 } else {
                     loginFail(c)

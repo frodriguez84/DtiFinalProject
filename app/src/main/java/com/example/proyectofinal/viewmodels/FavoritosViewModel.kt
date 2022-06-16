@@ -11,10 +11,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FavoritosViewModel : ViewModel() {
+
     fun cleanLogUser() {
         UserRepository.userMailLogin = ""
     }
-
 
     var repository : FavRepository = FavRepository()
     var favoritos = repository.favList
@@ -34,8 +34,5 @@ class FavoritosViewModel : ViewModel() {
 
             }
             .show()
-
     }
-
-
 }

@@ -94,7 +94,7 @@ class HomeViewModel : ViewModel() {
         parkView = v.findViewById(R.id.parkTextView)
         pcPark = v.findViewById(R.id.pcpark)
 
-        var dti = ListDti[pos]
+        val dti = ListDti[pos]
 
 
         beachName.text = dti.name
@@ -181,10 +181,7 @@ class HomeViewModel : ViewModel() {
 
             }
             .show()
-
     }
-
-
 }
 
 

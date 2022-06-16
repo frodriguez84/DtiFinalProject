@@ -5,20 +5,19 @@ object Config {
     var URL_CIUDADES = "https://ciudadesdelfuturo.org.ar/"
     var URL_REDDIT = "https://www.reddti-ar.com.ar/"
     var MAIL_CONTACTO = "contacto@reddti-ar.com.ar"
-    //var URL_BD ="https://6180891b8bfae60017adfb16.mockapi.io/"
-    var URL_BD ="https://12f6-181-229-221-38.sa.ngrok.io/proyectodti-3e1b6/us-central1/app/"
+    var URL_BD ="https://6180891b8bfae60017adfb16.mockapi.io/"
+   // var URL_BD ="https://12f6-181-229-221-38.sa.ngrok.io/proyectodti-3e1b6/us-central1/app/"
     var GOOGLE_MAPS : String = "com.google.android.apps.maps"
     var USERS : String = "users"
     var FAVS : String = "favs"
     var FORMS : String = "forms"
 
 
-
     ///MENSAJES///
     //Login ViewModel
     var SUCCESS : String = "Registro exitoso \nInicie sesion"
     var ERROR : String = "Error: Se ha producido un error registrando al usuario"
-    var USER_PASS_WRONG : String = "Usuario o Password incorrecto. \nIntente nuevamente"
+    var USER_PASS_WRONG : String = "Usuario o Contraseña incorrecta. \nIntente nuevamente"
 
     //Beach ViewModel
     var DTI_NOT_IN_FAV : String = "Dti no se encuentra en lista de favoritos"

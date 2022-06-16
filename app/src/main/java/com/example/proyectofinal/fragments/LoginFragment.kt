@@ -16,8 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 @Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
 
-    private val db = FirebaseFirestore.getInstance()
-
     private val vm: LoginViewModel by viewModels()
 
     private lateinit var email: TextView
@@ -38,7 +36,6 @@ class LoginFragment : Fragment() {
         btnLog = v.findViewById(R.id.logBtn)
         btnReg = v.findViewById(R.id.regBtn)
         btnRecu = v.findViewById(R.id.btnRecuMail)
-
 
         return v
     }
